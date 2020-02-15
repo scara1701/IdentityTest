@@ -36,7 +36,6 @@ namespace IdentityTest
 
             services.AddTransient<IUserStore<ApplicationUser>, UserStore>();
             services.AddTransient<IRoleStore<ApplicationRole>, RoleStore>();
-
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddDefaultTokenProviders();
             services.AddRazorPages();
         }

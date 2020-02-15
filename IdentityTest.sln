@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityTest", "IdentityTest\IdentityTest.csproj", "{D88C2705-2A1F-4985-9738-DCAE3BC8BB20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "TestAPI\TestAPI.csproj", "{2D0F047C-8038-4A7D-BE6E-0E40501115DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAPI", "TestAPI\TestAPI.csproj", "{2D0F047C-8038-4A7D-BE6E-0E40501115DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClient", "TestClient\TestClient.csproj", "{5C49D93F-7241-4317-9F57-19488B3E65FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "TestClient\TestClient.csproj", "{5C49D93F-7241-4317-9F57-19488B3E65FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMVC", "TestMVC\TestMVC.csproj", "{E4119D8F-E3E4-467B-87F5-98E4A6AD1C06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5C49D93F-7241-4317-9F57-19488B3E65FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C49D93F-7241-4317-9F57-19488B3E65FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C49D93F-7241-4317-9F57-19488B3E65FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4119D8F-E3E4-467B-87F5-98E4A6AD1C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4119D8F-E3E4-467B-87F5-98E4A6AD1C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4119D8F-E3E4-467B-87F5-98E4A6AD1C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4119D8F-E3E4-467B-87F5-98E4A6AD1C06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,16 +30,32 @@ namespace IdentityTest
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-            services.AddIdentityServer()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApis())
-                .AddInMemoryClients(Config.GetClients());
-
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            }
+            );
 
             services.AddTransient<IUserStore<ApplicationUser>, UserStore>();
             services.AddTransient<IRoleStore<ApplicationRole>, RoleStore>();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddDefaultTokenProviders();
             services.AddTransient<IEmailSender, EmailServerService>();
+
+            //moet na identity komen vermoed ik
+            var builder = services.AddIdentityServer(options =>
+            {
+                options.Events.RaiseErrorEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseSuccessEvents = true;
+            })
+            .AddInMemoryIdentityResources(Config.GetIdentityResources())
+            .AddInMemoryApiResources(Config.GetApis())
+            .AddInMemoryClients(Config.GetClients())
+            .AddAspNetIdentity<ApplicationUser>();
+            
+            //do not use in production
+            builder.AddDeveloperSigningCredential();
             services.AddRazorPages();
         }
 
@@ -60,10 +76,9 @@ namespace IdentityTest
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseMvcWithDefaultRoute();
             app.UseRouting();
             app.UseIdentityServer();
-            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

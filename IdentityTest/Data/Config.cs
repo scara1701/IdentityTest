@@ -58,30 +58,31 @@ namespace IdentityTest.Data
                 },
                 AllowedScopes = { "api1" }
             },
-            // OpenID Connect hybrid flow client (MVC)
-            new Client
-            {
-                ClientId = "mvc",
-                ClientName = "MVC Client",
-                AllowedGrantTypes = GrantTypes.Hybrid,
-
-                ClientSecrets =
+                // interactive ASP.NET Core MVC client
+                new Client
                 {
-                    new Secret("secret".Sha256())
+                    ClientId = "mvc",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequireConsent = false,
+                    RequirePkce = true,
+                
+                    // where to redirect to after login
+                    RedirectUris = { "http://localhost:5002/signin-oidc" },
+
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    },
+
+                    AllowOfflineAccess = true
                 },
-
-                RedirectUris           = { "http://localhost:5002/signin-oidc" },
-                PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-
-                AllowedScopes =
-                {
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,
-                    "api1"
-                },
-
-                AllowOfflineAccess = true
-            },
             // JavaScript Client
             new Client
             {

@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using IdentityTest.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using IdentityTest.Services;
 
 namespace IdentityTest
 {
@@ -37,6 +39,7 @@ namespace IdentityTest
             services.AddTransient<IUserStore<ApplicationUser>, UserStore>();
             services.AddTransient<IRoleStore<ApplicationRole>, RoleStore>();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddDefaultTokenProviders();
+            services.AddTransient<IEmailSender, EmailServerService>();
             services.AddRazorPages();
         }
 

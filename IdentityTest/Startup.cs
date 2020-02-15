@@ -30,11 +30,11 @@ namespace IdentityTest
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-            services.AddMvc(options =>
-            {
-                options.EnableEndpointRouting = false;
-            }
-            );
+            //services.AddMvc(options =>
+            //{
+            //    options.EnableEndpointRouting = false;
+            //}
+            //);
 
             services.AddTransient<IUserStore<ApplicationUser>, UserStore>();
             services.AddTransient<IRoleStore<ApplicationRole>, RoleStore>();
@@ -44,6 +44,8 @@ namespace IdentityTest
             //moet na identity komen vermoed ik
             var builder = services.AddIdentityServer(options =>
             {
+                options.UserInteraction.LoginUrl = "/Identity/Account/Login";
+                options.UserInteraction.LogoutUrl = "/Identity/Account/Logout";
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;
@@ -76,7 +78,7 @@ namespace IdentityTest
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
             app.UseRouting();
             app.UseIdentityServer();
             app.UseAuthorization();
